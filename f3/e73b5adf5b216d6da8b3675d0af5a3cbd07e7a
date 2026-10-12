@@ -1,0 +1,19 @@
+bun.lock
+  s_1506abc28ed226::t_8496ef12f946a6 1-262
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f3e73b5adf5b216d6da8b3675d0af5a3cbd07e7a",
+  "prompts": {},
+  "sessions": {
+    "s_1506abc28ed226": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a12f55-d82e-7471-a186-f7a765707fa6",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Arvid Lagerqvist <arvid.lagerqvist@live.se>"
+    }
+  }
+}
