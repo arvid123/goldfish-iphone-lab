@@ -7,8 +7,11 @@ It inserts drafts only. It never sends WhatsApp messages.
 
 ## What is and isn't established
 
-The Linux state checks have runnable tests. Native iOS compilation, sideloading,
-and actual WhatsApp read synchronization must still be verified on a device.
+The Linux state checks and API access checks passed. The app and keyboard
+compiled successfully on a standard GitHub macOS runner (run 38244690315).
+The unsigned IPA includes both the app and the keyboard extension, targeting
+iOS 16 or newer. Signing, sideloading, and actual WhatsApp read synchronization
+must still be verified on the user's device.
 The app cannot establish which chat is on screen. A read signal is an inference
 and may originate from another linked device or a notification. Switching to an
 already-read chat can leave that inference wrong, even within its 30-second
@@ -77,6 +80,10 @@ need to be completed on your own phone. Enter Apple credentials directly into
 the trusted signing tool, never into this project's code, GitHub, or chat.
 Keep the keyboard extension when the installer offers extension selection.
 Keyboard signing through this exact route remains to be validated.
+
+On this Arch Linux computer, `libimobiledevice` is installed but `usbmuxd` is
+missing. Install the USB service once with `sudo pacman -S usbmuxd`, then connect
+and unlock the iPhone and accept Trust This Computer when prompted.
 
 Free provisioning expires after seven days, so apps need periodic refresh.
 Paid Apple membership, TestFlight, rented Macs, and paid GitHub runners are not
