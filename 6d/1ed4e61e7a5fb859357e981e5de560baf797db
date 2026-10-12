@@ -1,0 +1,21 @@
+server.ts
+  s_1506abc28ed226::t_2b6e9fdd37c512 147
+README.md
+  s_1506abc28ed226::t_2b6e9fdd37c512 36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6d1ed4e61e7a5fb859357e981e5de560baf797db",
+  "prompts": {},
+  "sessions": {
+    "s_1506abc28ed226": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a12f55-d82e-7471-a186-f7a765707fa6",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Arvid Lagerqvist <arvid.lagerqvist@live.se>"
+    }
+  }
+}
