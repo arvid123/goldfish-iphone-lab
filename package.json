@@ -1,0 +1,7 @@
+{
+  "name": "goldfish-whatsapp-lab",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "bun server.ts", "test": "bun test" },
+  "dependencies": { "@whiskeysockets/baileys": "7.0.0-rc14", "qrcode": "1.5.4" }
+}

@@ -1,0 +1,56 @@
+name: GoldfishLab
+options:
+  bundleIdPrefix: sh.goldfish.lab
+  deploymentTarget:
+    iOS: '16.0'
+settings:
+  base:
+    SWIFT_VERSION: '5.0'
+    TARGETED_DEVICE_FAMILY: '1'
+    CURRENT_PROJECT_VERSION: '1'
+    MARKETING_VERSION: '0.1.0'
+targets:
+  GoldfishLab:
+    type: application
+    platform: iOS
+    sources: [App]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: sh.goldfish.lab
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Goldfish Lab
+        UILaunchScreen: {}
+        NSLocalNetworkUsageDescription: Connect to your Goldfish computer on the same Wi-Fi network.
+    dependencies:
+      - target: GoldfishKeyboard
+        embed: true
+  GoldfishKeyboard:
+    type: app-extension
+    platform: iOS
+    sources: [Keyboard]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: sh.goldfish.lab.keyboard
+        APPLICATION_EXTENSION_API_ONLY: YES
+    info:
+      path: Keyboard/Info.plist
+      properties:
+        CFBundleDisplayName: Goldfish
+        NSLocalNetworkUsageDescription: Ask your Goldfish computer for a draft.
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.keyboard-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).KeyboardViewController
+          NSExtensionAttributes:
+            IsASCIICapable: true
+            PrimaryLanguage: en-US
+            PrefersRightToLeft: false
+            RequestsOpenAccess: true
+schemes:
+  GoldfishLab:
+    build:
+      targets:
+        GoldfishLab: all

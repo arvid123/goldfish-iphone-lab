@@ -1,0 +1,5 @@
+node_modules/
+.state/
+ios/build/
+ios/*.xcodeproj/
+*.ipa

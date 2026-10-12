@@ -1,0 +1,33 @@
+name: Free unsigned iPhone build
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    # Standard hosted runners are free for public repos. Refuse private runs.
+    if: github.event.repository.private == false
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install project generator
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate
+      - name: Build app and keyboard without signing
+        working-directory: ios
+        run: xcodebuild -project GoldfishLab.xcodeproj -scheme GoldfishLab -configuration Release -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+      - name: Package unsigned app
+        working-directory: ios
+        run: |
+          mkdir -p build/Payload
+          cp -R build/Build/Products/Release-iphoneos/GoldfishLab.app build/Payload/
+          cd build
+          zip -qr GoldfishLab-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: GoldfishLab-unsigned
+          path: ios/build/GoldfishLab-unsigned.ipa
+          retention-days: 3
