@@ -144,6 +144,7 @@ const server = Bun.serve({ hostname: '0.0.0.0', port, maxRequestBodySize: 20_000
     if (req.method === 'GET' && u.pathname === '/setup') {
       const ip = server.requestIP(req)?.address;
       if (!['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(ip || '')) return json({ error: 'Setup is only available on the Linux computer.' }, 403);
+      if (Date.now() > pinExpires) { pin = String(randomInt(100000, 1000000)); pinExpires = Date.now() + 10 * 60_000; pairAttempts = 0; }
       const image = qr ? await QRCode.toDataURL(qr) : '';
       return new Response(`<meta name="viewport" content="width=device-width"><meta http-equiv="refresh" content="5"><title>Goldfish setup</title><body style="font:18px system-ui;max-width:620px;margin:40px auto;padding:20px"><h1>Goldfish iPhone lab</h1><p>${connected ? 'WhatsApp linked. Open an unread chat on your iPhone to test detection.' : 'On your iPhone: WhatsApp → Settings → Linked Devices → Link a Device. Scan this code.'}</p>${image ? `<img src="${image}" width="280">` : ''}<p>Keyboard pairing code: <strong>${Date.now() < pinExpires ? pin : 'Expired. Restart the lab for a new code.'}</strong></p><p>After pairing, tap Goldfish in your iPhone keyboard. This lab uses recent read events; it cannot verify the chat currently on screen.</p></body>`, { headers: { 'Content-Type': 'text/html', 'Cache-Control': 'no-store', 'Content-Security-Policy': "default-src 'none'; img-src data:; style-src 'unsafe-inline'; frame-ancestors 'none'" } });
     }

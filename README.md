@@ -33,7 +33,7 @@ to link a device by scanning the displayed QR code. Keep the phone and computer
 on the same trusted Wi-Fi. The console shows the computer address.
 
 The setup page also shows a six-digit keyboard pairing code, valid for ten
-minutes and one use. Restart the backend for another code. The backend is
+minutes and one use. Refresh the computer setup page for another code. The backend is
 reachable on your LAN; `/setup` is restricted to loopback and the phone API
 requires its own bearer token. This local prototype uses HTTP on Wi-Fi; don't
 expose it to the internet. Production needs an encrypted connection.
