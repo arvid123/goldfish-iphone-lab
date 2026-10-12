@@ -1,0 +1,14 @@
+README.md
+  h_34be7b6cf33230 10-14,84-87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eb717aa54b19644833416317da3aed33d6b7c978",
+  "prompts": {},
+  "humans": {
+    "h_34be7b6cf33230": {
+      "author": "Arvid Lagerqvist <arvid.lagerqvist@live.se>"
+    }
+  }
+}
